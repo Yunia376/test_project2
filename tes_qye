@@ -6,7 +6,7 @@
 #define DHTTYPE DHT22
 
 #define LED_MERAH 3
-#define LED_HIJAU 4  // Ganti dari LED_BIRU
+#define LED_BIRU 4  
 #define LED_KUNING 5
 #define BUZZER 6
 
@@ -19,7 +19,7 @@ void setup() {
   dht.begin();
 
   pinMode(LED_MERAH, OUTPUT);
-  pinMode(LED_HIJAU, OUTPUT);
+  pinMode(LED_BIRU, OUTPUT);
   pinMode(LED_KUNING, OUTPUT);
   pinMode(BUZZER, OUTPUT);
 
@@ -28,12 +28,11 @@ void setup() {
   delay(2000);
 }
 
-// Fungsi buzzer untuk buzzer pasif
 void bunyikanBuzzer(int durasi, int jeda, int ulang) {
   for (int i = 0; i < ulang; i++) {
-    tone(BUZZER, 1000);       // Bunyikan buzzer dengan frekuensi 1000 Hz
+    tone(BUZZER, 1000);    
     delay(durasi);
-    noTone(BUZZER);           // Matikan suara
+    noTone(BUZZER);          
     delay(jeda);
   }
 }
@@ -48,17 +47,17 @@ void loop() {
   lcd.print(" C");
 
   if (suhu <= 10) {
-    digitalWrite(LED_HIJAU, HIGH);
+    digitalWrite(LED_BIRU, HIGH);
     digitalWrite(LED_KUNING, LOW);
     digitalWrite(LED_MERAH, LOW);
     bunyikanBuzzer(200, 800, 2);  // Bip pelan
   } else if (suhu > 10 && suhu <= 20) {
-    digitalWrite(LED_HIJAU, LOW);
+    digitalWrite(LED_BIRU, LOW);
     digitalWrite(LED_KUNING, HIGH);
     digitalWrite(LED_MERAH, LOW);
     bunyikanBuzzer(150, 300, 3);  // Bip sedang
   } else {
-    digitalWrite(LED_HIJAU, LOW);
+    digitalWrite(LED_BIRU, LOW);
     digitalWrite(LED_KUNING, LOW);
     digitalWrite(LED_MERAH, HIGH);
     bunyikanBuzzer(100, 100, 5);  // Bip cepat
